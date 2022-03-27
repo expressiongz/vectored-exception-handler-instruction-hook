@@ -8,7 +8,7 @@ auto veh_func(EXCEPTION_POINTERS *p_exception) {
         return EXCEPTION_CONTINUE_EXECUTION;
     }
     if(p_exception->ExceptionRecord->ExceptionCode == STATUS_SINGLE_STEP) {
-        printf("[stepper] Hooked syscall -> %p\n", (void*)p_exception->ExceptionRecord->ExceptionAddress);
+        printf("[stepper] Hooked instruction -> %p\n", (void*)p_exception->ExceptionRecord->ExceptionAddress);
         p_exception->ContextRecord->EFlags |= 0x100;
         return EXCEPTION_CONTINUE_EXECUTION;
     }
