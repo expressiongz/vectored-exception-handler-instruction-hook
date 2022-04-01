@@ -16,10 +16,10 @@ auto veh_func(EXCEPTION_POINTERS *p_exception) {
 }
 int main() {
     DWORD old;
-    auto veh_handler = AddVectoredExceptionHandler(1, (PVECTORED_EXCEPTION_HANDLER)veh_func);
+    auto veh = AddVectoredExceptionHandler(1, (PVECTORED_EXCEPTION_HANDLER)veh_func);
     VirtualProtect((LPVOID)printf, 1, PAGE_EXECUTE_READ | PAGE_GUARD, &old);
     printf("%s", "enable single stepping.");
-    if(veh_handler == NULL) {
+    if(veh == NULL) {
         printf("%s", "Failed to add VEH.");
         return 0;
     }
